@@ -1,0 +1,86 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      
+      <!-- Tarjeta principal con sombra suave -->
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+          <h4 class="mb-0 fw-bold">Añadir Nuevo Personaje</h4>
+        </div>
+        
+        <div class="card-body p-4">
+          <form #formulario="ngForm">
+            
+            <!-- Campo Nombre -->
+            <div class="mb-3">
+              <label for="cajanombre" class="form-label fw-semibold text-secondary">Nombre del personaje</label>
+              <input 
+                type="text" 
+                id="cajanombre"
+                name="cajanombre" 
+                #cajanombre 
+                class="form-control form-control-lg" 
+                placeholder="Ej. Iron Man" />
+            </div>
+            
+            <!-- Campo Imagen -->
+            <div class="mb-3">
+              <label for="cajaimagen" class="form-label fw-semibold text-secondary">URL de la imagen</label>
+              <input 
+                type="text" 
+                id="cajaimagen"
+                name="cajaimagen" 
+                #cajaimagen 
+                (input)="0" 
+                class="form-control" 
+                placeholder="https://ejemplo.com" />
+            </div>
+            
+            <!-- Vista previa de la imagen -->
+            @if (cajaimagen.value) {
+              <div class="text-center my-3 p-3 bg-light rounded-3 border">
+                <p class="small text-muted mb-2">Vista previa:</p>
+                <img 
+                  [src]="cajaimagen.value" 
+                  alt="Vista previa" 
+                  class="img-fluid rounded shadow-sm" 
+                  style="max-height: 200px; object-fit: cover;" />
+              </div>
+            }
+            
+            <!-- Campo Película -->
+            <div class="mb-4">
+              <label for="cajapelicula" class="form-label fw-semibold text-secondary">Película</label>
+              <input 
+                type="text" 
+                id="cajapelicula"
+                name="cajapelicula" 
+                #cajapelicula 
+                class="form-control" 
+                placeholder="Ej. Avengers: Endgame" />
+            </div>
+            
+            <!-- Botón de acción -->
+            <div class="d-grid">
+              <button 
+                type="button"
+                (click)="insertarPersonaje()" 
+                class="btn btn-success btn-lg fw-semibold shadow-sm">
+                Insertar Personaje
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Mensaje de respuesta estilizado como alerta -->
+      @if (mensaje) {
+        <div class="alert alert-info text-center mt-4 shadow-sm rounded-3 fw-medium" role="alert">
+          {{ mensaje }}
+        </div>
+      }
+
+    </div>
+  </div>
+</div>
